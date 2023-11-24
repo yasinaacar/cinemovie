@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="row g-0">
+                          <div class="col-md-12">
+                            <div class="card-body">
+                              <input type="hidden" name="actorid" value="<%= actor.id %>">
+                              <input type="hidden" name="actorname" value="<%= actor.actorname %>">
+                              <h4 class="card-title">"<%= actor.actorname %>"</h4>
+                              <p class="card-text">adlı sanatçıyı silmek istediğinize emin misiniz?</p>
+                              <div class="button float-end my-2">
+                                <button type="submit" class="btn btn-danger px-4 me-2">Sil</button>
+                                <a href="/admin/artists" class="btn btn-primary px-4">Vazgeç</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container">
+        <h3 class="text-center my-4"><%= title %></h3>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-3">
+              <%- include('../partials/category-menu') %>
+            </div>
+            <div class="col-md-9">
+                <% movies.forEach(movie => { %>
+                    <div class="card my-3 movie-card">
+                        <div class="row g-0">
+                          <div class="col-md-3">
+                            <img src="/static/image/<%= movie.movieimg %>" class="img-fluid rounded-start h-100 w-100" alt="/static/image/<%= movie.movieimg %>" >
+                          </div>
+                          <div class="col-md-9">
+                            <div class="card-body">
+                              <h5 class="card-title moviename"><%= movie.moviename %></h5>
+                              <p class="about-movie text-muted"><%= movie.relasedate %> / <%= movie.duration %> / 
+                              <% movie.categories.forEach(category => { %>
+                                <%= category.categoryname %>-
+                              <% }) %></p>
+                              <p class="actor">Oyuncular: <span><% movie.actors.forEach(actor => { %>
+                                    <%= actor.actorname %>,
+                              <% }) %></span></p>
+                              <p class="card-text movie-subject"><%= movie.content %></p>
+                              <p class="subtitle-and-dimensional"><b><%= movie.visualtype==true ? "3D":"2D" %>-<%= movie.subtitle==true ? "Altyazılı":"Türkçe Dublaj" %></b></p>
+                              <div class="buttons mt-5">
+                                <a href="<%= movie.trailer %>" class="btn btn-warning btn-sm" target="_blank">FRAGMANI İZLE</a>
+                                <a href="/on-display/movie/<%= movie.id %>" class="btn btn-danger btn-sm">Seanslar</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body class="bg-dark">
+    <%- include('../partials/nav') %>
+
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="row mt-4">
+                        <div class="col-lg-5">
+                            <div class="card bg-light">
+                                <h5 class="card-header bg-danger text-light text-center mb-4">Bilet Bilgileri</h5>
+                                <div class="mb-3 row  px-2 pb-3">
+                                    <input type="hidden" name="movieid" value="<%= movie.id %>">
+                                    <label for="moviename" class="col-lg-2 col-form-label">Film:</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control text-center" id="moviename" name="moviename" disabled value="<%= movie.moviename %>">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row  px-2 pb-3">
+                                    <input type="hidden" name="saloonid" value="<%= saloon.id %>">
+                                    <label for="saloon" class="col-lg-2 col-form-label">Salon:</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control text-center" id="saloon" name="saloon" disabled value="<%= saloon.saloonname %>">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row  px-2 pb-3">
+                                    <input type="hidden" name="shoetimeid" value="<%= showtime.id %>">
+                                    <label for="date" class="col-lg-2 col-form-label">Tarih:</label>
+                                    <div class="col-lg-10">
+                                        <input type="date" class="form-control text-center" id="date" name="date" disabled value="<%= showtime.date %>">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row  px-2 pb-3">
+                                    <input type="hidden" name="showtimeid" value="<%= showtime.id %>">
+                                    <label for="time" class="col-lg-2 col-form-label">Saat:</label>
+                                    <div class="col-lg-10">
+                                        <input type="time" class="form-control text-center" id="time" name="time" disabled value="<%= showtime.time %>">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row  px-2 pb-3">
+                                    <input type="hidden" name="ticketprice" value="<%= saloontype.ticketprice %>">
+                                    <label for="ticketprice" class="col-lg-2 col-form-label">Fiyat:</label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input type="ticketprice" class="form-control text-center" id="ticketprice" name="ticketprice" disabled value="<%= saloontype.ticketprice %>.00">
+                                            <span class="input-group-text">₺</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row  px-2 pb-3">
+                                    <input type="hidden" name="totalprice" value="">
+                                    <label for="totalprice" class="col-lg-2 col-form-label">Toplam:</label>
+                                    <div class="col-lg-10">
+                                        <div class="input-group">
+                                            <input type="totalprice" class="form-control text-center text-danger" id="totalprice" name="totalprice" disabled value="0">
+                                            <span class="input-group-text">₺</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="mb-3 row  px-2 py-3">
+                                            <label for="cardnumber" class="col-lg-2 col-form-label">Kart No:</label>
+                                            <div class="col-lg-10">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control text-center text-danger" id="cardnumber" name="cardnumber" placeholder="Kart Numaranızı Girin">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row  px-2 py-3">
+                                            <label for="cvc" class="col-lg-2 col-form-label">CVC:</label>
+                                            <div class="col-lg-10">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control text-center text-danger" id="cvc" name="cvc" placeholder="CVC">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row  px-2 py-3">
+                                            <label for="namesurname" class="col-lg-2 col-form-label">Kart No:</label>
+                                            <div class="col-lg-10">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control text-center text-danger" id="namesurname" name="namesurname" placeholder="Kart Üzerindeki Ad Soyad">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="button my-4 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success">Ödeme Yap</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 ms-4">
+                            <% if (typeof message!="undefined") { %>
+                                <div class="alert alert-<%= message.class %>">
+                                    <%= message.text %>
+                                </div>
+                            <% } %>
+                            <div class="screen mb-5"><h5 class="text-center pt-2">Ekran</h5></div>
+                            <div class="row">
+                                <% seats.forEach(seat => { %>
+                                    <div class="col-md-2 d-flex justify-content-center my-1 px-0">
+                                        <div class="seat px-5">
+                                            <div class="form-check text-light">
+                                                <div class="text-center">
+                                                    <input class="form-check-input" type="checkbox" value="<%= seat.id %>" id="seat_<%= seat.id %>" name="seats[]"
+                                                    <%= selectedSeats.some(selected=> selected.seatId==seat.id) ? "checked disabled":"" %>>
+                                                    <label class="form-check-label" for="seat_<%= seat.id %>"><%= seat.seatnumber %></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>     
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        // Checkbox'ların olduğu HTML elemanlarını seçme
+        const checkboxes = document.querySelectorAll('input.form-check-input');
+
+        // Checkbox sayısını takip etmek için sayaç değişkeni
+        let checkedCount = 0;
+
+        // Her bir checkbox için event listener ekleme
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+              // Eğer checkbox seçili ise sayaçı artır
+              checkedCount++;
+            } else {
+              // Eğer checkbox seçili değilse sayaçı azalt
+              checkedCount--;
+            }
+        
+            // Seçilen checkbox sayısını al
+            const ticketPrice = parseInt(document.getElementById('ticketprice').value);
+            const totalPrice = checkedCount * ticketPrice;
+
+            // Toplam fiyatı göster
+            document.getElementById('totalprice').value = totalPrice;
+          });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Kategoriler
+    </div>
+    <ul class="list-group list-group-flush">
+      <% categories.forEach(category => { %>
+        <li class="list-group-item "><a href="/on-display/category/<%= category.id %>" style="text-decoration: none;"><%= category.categoryname %></a></li>
+      <% }) %>
+    </ul>
+</div>

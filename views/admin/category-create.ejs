@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="mb-3 row">
+                        <label for="categoryname" class="col-sm-1 col-form-label">Kategori/Tür:</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="categoryname" name="categoryname">
+                        </div>
+                        <div class="text-center col-sm-1">
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

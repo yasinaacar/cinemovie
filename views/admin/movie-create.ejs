@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="mb-3 row">
+                            <label for="moviename" class="col-sm-2 col-form-label">Film Adı:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="moviename" name="moviename">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="content" class="col-sm-2 col-form-label">Film Konusu:</label>
+                            <div class="col-sm-10">
+                              <textarea name="content" id="content" rows="10" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="trailer" class="col-sm-2 col-form-label">Fragman Linki:</label>
+                            <div class="col-sm-10">
+                              <input type="url" class="form-control" id="trailer" name="trailer" placeholder="Url adresini girin">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="movieimg" class="col-sm-2 col-form-label">Film Afişi:</label>
+                            <div class="col-sm-10">
+                              <input type="file" class="form-control" id="movieimg" name="movieimg">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="duration" class="col-sm-2 col-form-label">Film Süresi:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="duration" name="duration" placeholder="Dakika cinsinden değer girin. Örn:120dk">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="relasedate" class="col-sm-2 col-form-label">Vizyon Tarihi:</label>
+                            <div class="col-sm-10 d-flex">
+                                <input type="date" class="form-control" id="relasedate" name="relasedate">
+                            </div>
+                        </div>
+                        <div class="mb-3  text-center">
+                            <button type="submit" class="btn btn-primary px-5">Ekle</button>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row mb-3">
+                            <h6 class="text-center">Film Özellikleri</h6>
+                            <hr>
+                            <div class="row mb-1">
+                                <div class="form-check ms-4">
+                                    <input class="form-check-input"type="checkbox" id="is3D" name="is3D">
+                                    <label class="form-check-label" for="is3D">3D</label>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="form-check ms-4">
+                                    <input class="form-check-input"type="checkbox" id="isSubtitle" name="isSubtitle">
+                                    <label class="form-check-label" for="isSubtitle">Altyazılı</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

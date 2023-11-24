@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="mb-3 row">
+                        <input type="hidden" name="roleid" value="<%= role.id %>">
+                        <label for="rolename" class="col-sm-1 col-form-label">Role Adı:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="rolename" name="rolename" value="<%= role.rolename %>">
+                        </div>
+                        <div class="text-center col-sm-1">
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                        </div>
+                    </div> 
+                </form>
+                <h5 class="mt-5 mb-4">Role ait kişi sayısı: <b><%= count %></b></h5>
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <th>#id</th>
+                        <th>Ad-Soyad</th>
+                        <th>E-Mail</th>
+                        <th style="width: 270px;"></th>
+                    </thead>
+                    <% role.users.forEach(user => { %>
+                     
+                        <tbody>
+                            <td>#<%= user.id %></td>
+                            <td><%= user.fullname %></td>
+                            <td><%= user.email %></td>
+                            <td>
+        
+                                <div class="buttons text-center d-flex justify-content-center">
+                                    <a href="/admin/user/edit/<%= user.id %>" class="btn btn-primary me-2">Düzenle</a>
+                                    <form method="post" action="/admin/role/user/remove">
+                                        <input type="hidden" name="userid" value="<%= user.id %>">
+                                        <button type="submit" class="btn btn-danger">Kategoriden Çıkart</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tbody>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

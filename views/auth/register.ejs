@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-center mt-3 ">
+                <div class="card text-bg-light mb-3" style="width: 22rem;">
+                    <div class="card-header text-center bg-danger"><h5 class="text-light">cinemovie</h5></div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                              <label for="fullname" class="form-label">Ad-Soyad:</label>
+                              <input type="text" class="form-control" id="fullname" name="fullname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-Mail:</label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="alreadyTaken">
+                                <% if (typeof message != "undefined" && message.warning=="alreadyTaken") { %>
+                                    <div id="alreadyTaken" class="form-text text-danger"><%= message.text %></div>
+                                <% } %>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefon:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="mb-3">
+                              <label for="password" class="form-label">Şifre:</label>
+                              <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="passwordagain" class="form-label">Şifre Tekrar:</label>
+                                <input type="password" class="form-control" id="passwordagain" name="passwordagain" aria-describedby="noMatches">
+                                <% if (typeof message != "undefined" && message.warning=="noMatches") { %>
+                                  <div id="noMatches" class="form-text text-danger"><%= message.text %></div>
+                                <% } %>
+                              </div>
+                            <div class="buttons text-center">
+                                <button type="submit" class="btn btn-danger">Kaydol</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../partials/script') %>
+</body>
+</html>

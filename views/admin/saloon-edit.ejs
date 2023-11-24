@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <div class="col-md-12">
+                <form method="post">
+                    <input type="hidden" name="saloonid" value="<%= saloon.id %>">
+                    <div class="mb-3 row">
+                        <label for="saloonname" class="col-sm-1 col-form-label">Salon Adı:</label>
+                        <div class="col-sm-11">
+                          <input type="text" class="form-control" id="saloonname" name="saloonname" value="<%= saloon.saloonname %>"> 
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="capacity" class="col-sm-1 col-form-label">Kapasite:</label>
+                        <div class="col-sm-11">
+                          <input type="number" class="form-control" id="capacity" name="capacity" value="<%= saloon.capacity %>">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="capacity" class="col-sm-1 col-form-label">Salon Türü:</label>
+                        <div class="col-sm-11">
+                            <select class="form-select" name="saloontypeid">
+                                <% saloontypes.forEach(saloontype => { %>
+
+                                    <option value="<%= saloontype.id %>"><%= saloontype.typename %> (<%= saloontype.info %>)</option> 
+
+                                <% }) %>
+                              </select>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="movieid" class="col-sm-1 col-form-label">Film Adı:</label>
+                        <div class="col-sm-11">
+                            <select class="form-select" name="movieid" id="movieid">
+                                <% if (saloon.movieId==null) { %>
+                                    <option selected value="">Film Seç</option>
+                                <% } else { %> 
+                                    <option selected value="<%= saloon.movie.id %>"><%= saloon.movie.moviename %> / <%= saloon.movie.subtitle==true ? "Altyazılı":"Dublaj" %> / 
+                                        <%= saloon.movie.visualtype==true ? "3D":"2D" %></option>    
+                                <%}%>
+
+                                <% movies.forEach(movie => { %>
+                                    <option value="<%= movie.id %>"><%= movie.moviename %> / <%= movie.subtitle==true ? "Altyazılı":"Dublaj" %> / <%= movie.visualtype==true ? "3D":"2D" %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-4">Güncelle</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

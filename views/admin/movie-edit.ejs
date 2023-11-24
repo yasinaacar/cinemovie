@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <% if (typeof message!="undefined") { %>
+                <div class="alert alert-<%= message.class %>">
+                    <h6><%= message.text %></h6>
+                </div>
+            <% } %>
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="movieid" value="<%= movie.id %>">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="mb-3 row">
+                            <label for="moviename" class="col-sm-2 col-form-label">Film Adı:</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="moviename" name="moviename" value="<%= movie.moviename %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="content" class="col-sm-2 col-form-label">Film Konusu:</label>
+                            <div class="col-sm-10">
+                              <textarea name="content" id="content" rows="10" class="form-control"><%= movie.content %></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="trailer" class="col-sm-2 col-form-label">Fragman Linki:</label>
+                            <div class="col-sm-10">
+                              <input type="url" class="form-control" id="trailer" name="trailer" value="<%= movie.trailer %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="movieimg" class="col-sm-2 col-form-label">Film Afişi:</label>
+                            <div class="col-sm-10">
+                                <img src="/static/image/<%= movie.movieimg %>" alt="/static/image/<%= movie.movieimg %>" style="width: 100px;">
+                                <input type="file" class="form-control" id="movieimg" name="movieimg">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="duration" class="col-sm-2 col-form-label">Film Süresi:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="duration" name="duration" placeholder="Dakika cinsinden değer girin. Örn:120dk" value="<%= movie.duration %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="relasedate" class="col-sm-2 col-form-label">Vizyon Tarihi:</label>
+                            <div class="col-sm-10 d-flex">
+                                <input type="date" class="form-control" id="relasedate" name="relasedate" value="<%= movie.relasedate %>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row mb-3 ms-1">
+                            <h6 class="text-center">Film Özellikleri</h6>
+                            <hr>
+                            <div class="row mb-1">
+                                <div class="form-check ms-4">
+                                    <input class="form-check-input"type="checkbox" id="visualtype" name="visualtype"
+                                    <%= movie.visualtype==true ? "checked":"" %>>
+                                    <label class="form-check-label" for="visualtype">3D</label>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="form-check ms-4">
+                                    <input class="form-check-input"type="checkbox" id="isSubtitle" name="isSubtitle"
+                                    <%= movie.subtitle==true ? "checked":"" %>>
+                                    <label class="form-check-label" for="isSubtitle">Altyazılı</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 ms-1">
+                            <h6 class="text-center">Film Türü/Kategorisi:</h6>
+                            <hr>
+                            <% categories.forEach(category => { %>
+                             
+                                <div class="row mb-1">
+                                    <div class="form-check ms-4">
+                                        <input class="form-check-input" type="checkbox"
+                                         id="category_<%=category.id%>" value="<%= category.id %>" name="categories[]"
+                                        <%= movie.categories.some(cat=> cat.id == category.id) ? "checked":"" %>>
+                                        <label class="form-check-label" for="category_<%=category.id%>"><%=category.categoryname%></label>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                        <div class="row mb-3 ms-1">
+                            <h6 class="text-center">Filme Aktör Ekle-Sil</h6>
+                            <hr>
+                            <div class="row mb-1">
+                                <a href="/admin/movie/edit/<%= movie.id %>/add-actor" class="btn btn-sm btn-success ms-4">Aktörler Sayfası</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3  text-center">
+                        <button type="submit" class="btn btn-primary px-5">Güncelle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="mb-3 row">
+                        <label for="typename" class="col-sm-1 col-form-label">Salon Türü:</label>
+                        <div class="col-sm-11">
+                          <input type="text" class="form-control" id="typename" name="typename">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="info" class="col-sm-1 col-form-label">Salon Özellikleri:</label>
+                        <div class="col-sm-11">
+                          <input type="text" class="form-control" id="info" name="info" placeholder="Yataklı Koltuklar">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="ticketprice" class="col-sm-1 col-form-label">Bilet Fiyatı:</label>
+                        <div class="col-sm-11">
+                          <input type="number" class="form-control" id="ticketprice" name="ticketprice">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-4">Ekle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

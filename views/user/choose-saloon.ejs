@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center my-4">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                  <img src="/static/image/<%= movie.movieimg %>" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title text-center"><%= movie.moviename %></h5>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Vizyon Tarihi: </b><%= movie.relasedate %></li>
+                    <li class="list-group-item"><b>Süre:  </b><%= movie.duration %></li>
+                    <li class="list-group-item"><%= movie.visualtype==true ? "3D":"2D" %>-<%= movie.subtitle==true ? "Altyazılı":"Dublaj" %></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-8 mt-4">
+                <h6><%= title %></h6>
+                <hr>
+                <% if (typeof message!="undefined") { %>
+                  <div class="alert alert-<%= message.class %>">
+                    <h6 class="text-center"><%= message.text %></h6>
+                  </div>
+                <% } %>
+                <% saloons.forEach(saloon => { %>
+                  <div class="card bg-light my-4 d-flex justify-content-center">
+                    <div class="card-header">
+                      <b><%= saloon.saloonname %></b>
+                    </div>
+                    <div class="card-body">
+                      <div class="row text-center">
+                        <div class="col-md-3">
+                            <p>Koltuk Sayısı:</p>
+                            <p><b><%= saloon.capacity %></b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Salon Türü:</p>
+                          <% saloontypes.forEach(saloontype => { %>
+                           <% if (saloon.saloontypeId==saloontype.id) { %>
+                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="<%= saloontype.info %>">
+                              <button class="btn btn-warning" type="button" disabled><%= saloontype.typename %></button>
+                            </span>
+                           <% } %>
+                          <% }) %>
+                        </div>
+                        <div class="col-md-3">
+                          <p>Birim Fiyat:</p>
+                        <% saloontypes.forEach(saloontype => { %>
+                         <% if (saloon.saloontypeId==saloontype.id) { %>
+                            <h6><%= saloontype.ticketprice %>₺</h6>
+                         <% } %>
+                        <% }) %>
+                      </div>
+                        <div class="col-md-3">
+                          <p></p>
+                          <a href="/on-display/movie/<%= movie.id %>/saloon/<%= saloon.id %>/showtimes" class="btn btn-outline-danger">Seansları Göster</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+    <script>
+      const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+      const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
+</body>
+</html>

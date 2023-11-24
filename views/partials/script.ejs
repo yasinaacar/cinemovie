@@ -1,0 +1,24 @@
+<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function searchElement(){
+  
+        const elementSearch = document.querySelector("#searchForElement");
+        elementSearch.addEventListener("keyup",function(){
+        
+          let data = this.value;
+          let tbody = document.querySelectorAll(".tbody");
+        
+          for( let i = 0; i < tbody.length; i++) {
+            if(tbody[i].innerHTML.indexOf(data) > -1){
+              // eşleşme var
+              tbody[i].style.display = "";
+            } else {
+              // eşleşme yok
+              tbody[i].style.display = "none";
+            }
+          }
+        });
+    }
+
+searchElement();
+</script>

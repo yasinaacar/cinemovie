@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <% if (action != "undefined" && action=="create") { %>
+                <div class="alert alert-success">
+                    Hesap oluşturma başarılı. Hesabınıza giriş yapabilirsiniz
+                </div>
+            <% } %>
+            <% if (typeof message != "undefined") { %>
+                <div class="alert alert-warning">
+                    <%= message.text %>
+                </div>
+            <% } %>
+            <div class="col-md-12 d-flex justify-content-center mt-3 ">
+                <div class="card text-bg-light mb-3" style="width: 22rem;">
+                    <div class="card-header text-center bg-danger"><h5 class="text-light">cinemovie</h5></div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-Mail:</label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="wrongEmail">
+                                <% if (typeof message != "undefined" && message.warning=="wrongEmail") { %>                    
+                                    <div id="wrongEmail" class="form-text text-danger"><%= message.text %></div>
+                                <% } %>
+                            </div>
+                            <div class="mb-3">
+                              <label for="password" class="form-label">Şifre:</label>
+                              <input type="password" class="form-control" id="password" name="password" aria-describedby="wrongPassword">
+                              <% if (typeof message != "undefined" && message.warning=="wrongPassword") { %>                    
+                                <div id="wrongPassword" class="form-text text-danger"><%= message.text %></div>
+                            <% } %>
+                            </div>
+                            <div class="buttons text-center">
+                                <button type="submit" class="btn btn-danger">Giriş Yap</button>
+                                <a href="/account/forgot-password" class="ms-2">Şifremi Unuttum</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="mb-3 row">
+                        <input type="hidden" name="categoryid" value="<%= category.id %>">
+                        <label for="categoryname" class="col-sm-1 col-form-label">Kategori:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="categoryname" name="categoryname" value="<%= category.categoryname %>">
+                        </div>
+                        <div class="text-center col-sm-1">
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                        </div>
+                    </div> 
+                </form>
+                <h5 class="mt-5 mb-4">Kategoriye ait film sayısı: <b><%= count %></b></h5>
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <th>#id</th>
+                        <th style="width: 100px;">Afiş</th>
+                        <th>Film Adı</th>
+                        <th>Vizyon Tarihi</th>
+                        <th>Film Süresi</th>
+                        <th>3D-2D</th>
+                        <th>Dublaj-Altyazı</th>
+                        <th style="width: 270px;"></th>
+                    </thead>
+                    <% movies.forEach(movie => { %>
+                     
+                        <tbody>
+                            <td>#<%= movie.id %></td>
+                            <td><img src="/static/image/<%= movie.movieimg %>" alt="" style="width: 70px;"></td>
+                            <td><%= movie.moviename %></td>
+                            <td><%= movie.relasedate %></td>
+                            <td><%= movie.duration %></td>
+                            <td><%= movie.visualtype==true ? "3D":"2D" %></td>
+                            <td><%= movie.subtitle==true ? "Altyazılı":"Türkçe Dublaj" %></td>
+                            <td>
+        
+                                <div class="buttons text-center d-flex justify-content-center">
+                                    <a href="/admin/movie/edit/<%= movie.id %>" class="btn btn-primary me-2">Düzenle</a>
+                                    <form method="post" action="/admin/category/movie/remove">
+                                        <input type="hidden" name="movieid" value="<%= movie.id %>">
+                                        <button type="submit" class="btn btn-danger">Kategoriden Çıkart</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tbody>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <form method="post">
+                <div class="card">
+                    <div class="row g-0">
+                      <div class="col-md-12">
+                        <div class="card-body">
+                          <input type="hidden" name="showtimeid" value="<%= showtime.id %>">
+                          <h4 class="card-title">"<%= showtime.date %> / <%= showtime.time %>"</h4>
+                          <p class="card-text">tarihli seansa kayıtlı <b><% showtime.saloons.forEach(saloon => { %>
+                              <%= saloon.saloonname %>, 
+                          <% }) %> adlı salonlar </b>var. Yine de bu seansı silmek istediğinize emin misiniz?</p>
+                          <div class="button float-end my-2">
+                            <button type="submit" class="btn btn-danger px-4 me-2">Sil</button>
+                            <a href="/admin/showtimes" class="btn btn-primary px-4">Vazgeç</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

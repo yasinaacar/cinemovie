@@ -1,0 +1,107 @@
+<nav class="navbar navbar-expand-lg bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><i class="fa-solid fa-clapperboard"></i>cinemovie</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav me-auto">
+          <% if (isAdmin) { %>
+           
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Filmler
+              </a>
+              <ul class="dropdown-menu movie-menu">
+                <li><a class="dropdown-item" href="/admin/movies">Film Listesi</a></li>
+                <li><a class="dropdown-item" href="/admin/movie/create">Film Ekle</a></li>
+              </ul>       
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Aktörler
+              </a>
+              <ul class="dropdown-menu movie-menu">
+                <li><a class="dropdown-item" href="/admin/actors">Aktör Listesi</a></li>
+                <li><a class="dropdown-item" href="/admin/actor/create">Aktör Ekle</a></li>
+              </ul>
+              
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Kategoriler
+              </a>
+              <ul class="dropdown-menu movie-menu">
+                <li><a class="dropdown-item" href="/admin/categories">Kategori Listesi</a></li>
+                <li><a class="dropdown-item" href="/admin/category/create">Kategori Ekle</a></li>
+              </ul>
+              
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Salonlar
+              </a>
+              <ul class="dropdown-menu movie-menu">
+                <li><a class="dropdown-item" href="/admin/saloons">Salon Listesi</a></li>
+                <li><a class="dropdown-item" href="/admin/saloon/create">Salon Ekle</a></li>
+              </ul>
+              
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Seanslar
+              </a>
+              <ul class="dropdown-menu movie-menu">
+                <li><a class="dropdown-item" href="/admin/showtimes">Seans Listesi</a></li>
+                <li><a class="dropdown-item" href="/admin/showtime/create">Seans Ekle</a></li>
+              </ul>  
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Roller
+              </a>
+              <ul class="dropdown-menu movie-menu">
+                <li><a class="dropdown-item" href="/admin/roles">Rol Listesi</a></li>
+                <li><a class="dropdown-item" href="/admin/role/create">Rol Ekle</a></li>
+              </ul>  
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Salon Türleri
+              </a>
+              <ul class="dropdown-menu movie-menu">
+                <li><a class="dropdown-item" href="/admin/saloontypes">Salon Türleri Listesi</a></li>
+                <li><a class="dropdown-item" href="/admin/saloontype/create">Salon Türü Ekle</a></li>
+              </ul>  
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/users/">Kullanıcılar</a>
+            </li>
+          <% } else{%>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Vizyondakiler</a>
+              </li>
+
+            <% } %>
+           
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <% if (isAuth) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/account/settings/"><%= fullname %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/account/logout/">Çıkış Yap</a>
+            </li>
+          <% } else{ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/account/login/">Giriş Yap</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/account/register/">Kaydol</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+</nav>

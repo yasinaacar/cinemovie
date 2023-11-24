@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center my-4">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                  <img src="/static/image/<%= saloon.movie.movieimg %>" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title text-center"><%= saloon.movie.moviename %></h5>
+                  </div>
+                  <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><%= saloon.movie.visualtype==true ? "3D":"2D" %>-<%= saloon.movie.subtitle==true ? "Altyazılı":"Dublaj" %></li>
+                    <li class="list-group-item">Salon Türü:
+                      <% saloontypes.forEach(saloontype => { %>
+                        <% if (saloon.saloontypeId==saloontype.id) { %>                        
+                          <span class="d-inline-block ms-2" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="<%= saloontype.info %>">
+                            <button class="btn btn-warning" type="button" disabled><%= saloontype.typename %></button>
+                          </span>
+                        <% } %>
+                      <% }) %>
+                    </li>
+                    <li class="list-group-item">Kapasite: <%= saloon.capacity %></li>
+
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-8 mt-4">
+                <div class="d-flex mt-4">
+                  <h6 class="me-auto"><%= title %></h6>
+                  <div class="searchbar d-flex mb-1">
+                      <input type="date" class="form-control" id="date" name="date" min="minDate">
+                      <button class="btn btn-outline-danger ms-2" type="submit">Bul</button>
+                  </div>
+                </div>
+                <hr>
+                <% if (typeof message!="undefined") { %>
+                  <div class="alert alert-<%= message.class %>">
+                    <h6 class="text-center"><%= message.text %></h6>
+                  </div>
+                <% } %>
+                <% showtimes.forEach(showtime => { %>
+                  <div class="card bg-light py-5 my-4 showtime-card">
+                    <div class="row" style="margin: auto 0;">
+                      <div class="col-md-4 d-flex justify-content-center">
+                         <p><i class="fa-solid fa-calendar-days me-2"></i><h5><%= showtime.date %></h5></p>
+                      </div>
+                      <div class="col-md-4 d-flex justify-content-center">
+                        <p><i class="fa-solid fa-clock me-2"></i><h5><%= showtime.time %></h5></p>
+                      </div>
+                      <div class="col-md-4 d-flex justify-content-center">
+                        <a href="/on-display/movie/<%= saloon.movie.id %>/saloon/<%= saloon.id %>/showtimes/<%= showtime.id %>" class="btn btn-outline-danger">Bilet Al</a>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+    <%- include('../partials/date-script') %>
+    <script>
+      const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+      const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+      // Bugünün tarihi
+      var today = new Date();
+
+      // 2 ay sonrasının tarihi
+      var maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+
+      var todayISO = today.toISOString().split("T")[0];
+      var maxDateISO = maxDate.toISOString().split("T")[0];
+
+      // Input elementini seçin ve min, max ve value değerlerini ayarla
+      var input = document.getElementById("date");
+      input.min = todayISO;
+      input.max = maxDateISO;
+      input.value = todayISO;
+
+      var input = document.getElementById("date");
+      // Değer değiştiğinde filtreleme işlemini gerçekleştirme
+      input.addEventListener("change", function() {
+        // Seçilen tarihi alın
+        var selectedDate = input.value;
+      
+        // Filtreleme işlemini gerçekleştirme
+        filter(selectedDate);
+      });
+
+      // Filtreleme işlemini gerçekleştiren fonksiyon
+      function filter(date) {
+        // Tüm showtime kartlarını seçin
+        var showtimesCards = document.querySelectorAll(".showtime-card");
+      
+        // Her kart için döngü yapın
+        for (var i = 0; i < showtimesCards.length; i++) {
+          var showtimeCard = showtimesCards[i];
+        
+          // Kartın tarihini alın
+          var cardDate = showtimeCard.querySelector("h5").textContent;
+        
+          // Kartın görünüp görünmeyeceğini kontrol edin
+          if (cardDate === date) {
+            showtimeCard.style.display = "block"; // Görünür yapın
+          } else {
+            showtimeCard.style.display = "none"; // Gizleyin
+          }
+        }
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3 row">
+                            <label for="date" class="col-sm-2 col-form-label">Seans Tarihi:</label>
+                            <div class="col-sm-10 d-flex">
+                                <input type="date" class="form-control" id="date" name="date">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="time" class="col-sm-2 col-form-label">Seans Saati:</label>
+                            <div class="col-sm-10 d-flex">
+                                <input type="time" class="form-control" id="time" name="time">
+                            </div>
+                        </div>
+                        <div class="mb-3  text-center">
+                            <button type="submit" class="btn btn-primary px-5">Ekle</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+    <script>
+        // Bugünün tarihi
+        var today = new Date();
+        var todayISO = today.toISOString().split("T")[0];
+
+        // Input elementini seçin ve min, max ve value değerlerini ayarla
+        var input = document.getElementById("date");
+        input.min = todayISO;
+        input.value = todayISO;
+    </script>
+</body>
+</html>

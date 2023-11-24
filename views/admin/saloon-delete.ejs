@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <h3 class="text-center mb-4"><%= title %></h3>
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card" style="height: 180px;">
+                        <div class="row g-0">
+                          <div class="col-md-12">
+                            <div class="card-body">
+                              <input type="hidden" name="saloonid" value="<%= saloon.id %>">
+                              <input type="hidden" name="saloonname" value="<%= saloon.saloonname %>">
+                              <h4 class="card-title">"<%= saloon.saloonname %>"</h4>
+                              <p class="card-text my-4">adlı, <b><%= saloon.capacity %></b> kapasiteli salonu istediğinize emin misiniz?</p>
+                              <div class="button float-end">
+                                <button type="submit" class="btn btn-danger px-4 me-2">Sil</button>
+                                <a href="/admin/saloons" class="btn btn-primary px-4">Vazgeç</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>
