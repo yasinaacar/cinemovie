@@ -66,7 +66,7 @@ Bu proje, bir sinema işletmesini örnek alarak oluşturulmuştur. Aşağıdaki 
 ![Screenshot_3](https://github.com/yasinaacar/cinemovie/assets/70544990/92e48456-c6f5-43a8-8ea1-dc56b12e7ee4)
 ![Screenshot_2](https://github.com/yasinaacar/cinemovie/assets/70544990/6ac7a9f4-63dd-43e1-995c-24f247de3cc7)
 ![Screenshot_1](https://github.com/yasinaacar/cinemovie/assets/70544990/86ec88a7-4f4b-4363-af9f-74ef02b71720)
-![1](https://github.com/yasinaacar/cinemovie/assets/70544990/e9bd8178-e2d0-49e7-8b39-614813f14395)
+![1](https://github.com/yasinaacar/cinemovie/assets/70544990/e9bd8178-e2d0-49e7-8b39-614813f14395) 
 
 ## Uygulama Videosu
 [Cinemovie.mp4](https://drive.google.com/file/d/1UOdhfCeiMOLGBGr84OI_cYlb2UhQVHA9/view?usp=sharing)
