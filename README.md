@@ -2,7 +2,7 @@
 
 Bu proje, bir sinema işletmesini örnek alarak oluşturulmuştur. Aşağıdaki işlevleri içermektedir:
 
-## Fonksiyonlar
+## İşlemler
 
 ### Film Yönetimi
 - Filmlerle ilgili çeşitli bilgileri kaydedebilir, güncelleyebilir ve silebilirsiniz.
@@ -74,5 +74,5 @@ Bu proje, bir sinema işletmesini örnek alarak oluşturulmuştur. Aşağıdaki 
 ## Eklenecekler
 #### - Ödeme Entegrasyonu
 
-## Hata ve Öeneriler İçin:
+## Hata ve Öneriler İçin:
 [Bana Ulaş](mailto:yasinaacar@outlook.com)
